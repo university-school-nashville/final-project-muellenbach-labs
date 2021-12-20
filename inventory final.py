@@ -35,7 +35,7 @@ STATPOSX = 50       #stat x coordinates
 uiheight = 450  #inventory height
 
 invtilesize = 95    #tile size
-#COINOFFSET = 4
+
 
 
 class Player(pygame.sprite.Sprite):
@@ -351,9 +351,7 @@ class Game():               #main game function
     def new(self):
         # start a new game
         self.all_sprites = pygame.sprite.Group()
-        #self.all_coins = pygame.sprite.Group()
         self.player = Player(self, 15, 15, DEFUALT_HP, DEFUALT_PROT, DEFUALT_ATK)
-        #self.coin = Coin(self, random.randrange(0, GRIDWIDTH), random.randrange(0, GRIDHEIGHT))
         self.inventory = Inventory(self.player, 10, 5, 2)       #inventory item images
         # = Weapon('', 20, 20, 'weapon1', 'gauss rifle')
         # = Weapon('', 10, 10, 'weapon2', '"space glock')
@@ -392,7 +390,6 @@ class Game():               #main game function
         # game loop update
         self.all_sprites.update()       #updating game elements
         self.player.update()
-        #self.all_coins.update()
 
     def events(self):
         # game loop events
@@ -413,10 +410,7 @@ class Game():               #main game function
             if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 if self.inventory.display_inventory:
                     self.inventory.placeItem(self.screen)
-    
-    #def new_coin(self):
-        #self.coin.x = random.randrange(0, GRIDWIDTH)
-        #self.coin.y = random.randrange(0, GRIDHEIGHT)
+
     
         
     
@@ -425,28 +419,27 @@ class Game():               #main game function
         self.hp = self.myfont.render(f"{self.player.hp}" , False, RED)
         self.prot = self.myfont.render(f"{self.player.prot}" , False, WHITE)    #font color
         self.atk = self.myfont.render(f"{self.player.atk}" , False, WHITE)
-        #self.coins = self.myfont.render(f"{self.player.p_coins}" , False, GOLD)
+      
         self.hpimg = pygame.image.load('C:/Users/joshu/Downloads/pg-inventory-system-master/pg-inventory-system-master/img/heart.png').convert_alpha()
         self.protimg = pygame.image.load('C:/Users/joshu/Downloads/pg-inventory-system-master/pg-inventory-system-master/img/upg_shieldSmall.png').convert_alpha()
         self.atkimg = pygame.image.load('C:/Users/joshu/Downloads/pg-inventory-system-master/pg-inventory-system-master/img/upg_dagger.png').convert_alpha()
-        #self.coinimg = pygame.image.load('C:/Users/joshu/Downloads/pygame-inventory-system-master/pygame-inventory-system-master/img/coin1.png').convert_alpha()
+       
         self.screen.blit(self.hp,(STATPOSX,25))
         self.screen.blit(self.prot,(STATPOSX,75))       #display numbers
         self.screen.blit(self.atk,(STATPOSX,125))
-        #self.screen.blit(self.coins,(STATPOSX,175))
+       
         self.screen.blit(self.hpimg,(STATPOSX-50,5))
         self.screen.blit(self.protimg,(STATPOSX-50,55))     #display images
         self.screen.blit(self.atkimg,(STATPOSX-50,105))
-        #self.screen.blit(self.coinimg,(STATPOSX-55,155))
+      
 
     def draw(self):
         # game loop draw
         self.screen.fill(BGCOLOR)
        
-        #self.all_sprites.draw(self.screen)
+   
         self.inventory.draw(self.screen)
-        #self.draw_player_stats()
-        # flipping display after drawing
+    
         pygame.display.flip()
 
     def show_start_screen(self):
